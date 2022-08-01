@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState } from 'react';
 import {useDispatch} from 'react-redux'
 import { initialState } from '../redux/modules/todosReducer'
-import { dataSave } from "../redux/modules/todosReducer";
+import { addTodo } from "../redux/modules/todosReducer";
 import List from "./List";
 
 const InputBox = styled.div`
@@ -56,12 +56,14 @@ const FormInput = () => {
     setBody(e.target.value)
   }
 
-  const addBtn= (e) => {
+  const addBtn = (e) => {
+    if (title === '' && body === '')return
+
     let data = {
       title: title,
       body: body,
     }
-    dispatch(dataSave(data))
+    dispatch(addTodo(data))
     // dispatch(dataSave([...initialState, data]))
     setTitle('');
     setBody('');

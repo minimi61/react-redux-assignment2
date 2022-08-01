@@ -1,8 +1,12 @@
-const ADD_TODO = 'DATA_SAVE';
+// import { stat } from "fs";
+
+const ADD_TODO = 'ADD_TODO';
+const DELETE_TODO = 'DELETE_TODO';
+const TOGGLE_TODO = 'TOGGLE_TODO';
 
 let nextId = 3
 
-export const dataSave = (data) => (
+export const addTodo = (data) => (
 	{ type: ADD_TODO,
 		data: {
 		id: nextId++,
@@ -12,6 +16,18 @@ export const dataSave = (data) => (
 	}}
 )
 
+export const deleteTodo = (id) => (
+	{ type: DELETE_TODO,
+		id
+	}
+)
+
+export const toggleTodo = (id, isDone) => (
+	{ type: TOGGLE_TODO,
+		id,
+		isDone
+	}
+)
 
 export const initialState = [
 	{
@@ -25,20 +41,33 @@ export const initialState = [
 		id: 2, // id는 모두 고유값이어야 합니다.
 		title: "점심 먹기",
 		body: "점심 뭐먹지..?",
-		isDone: false
+		isDone: true
 	}
 ]
 
 //reducer
 export default function todosReducer(state = initialState, action){
 	switch (action.type) {
+
 		case ADD_TODO:
 			state = [...state, action.data]
 			console.log(state)
-			return 
-    // case 'DELETE_BTN':
-    //   return {
-    //   }
+			return state
+		
+		case DELETE_TODO:
+			state = [...state].filter(todo => todo.id !== action.id)
+			return state
+		
+		case TOGGLE_TODO:
+			console.log(action.id)
+			console.log('x id', state.map(x => x.id === action.id))
+			console.log('x isDone', state.map(x => x.isDone))
+			// state = [...state].map(todo => todo.id === action.id ? !todo.isDone : todo.isDone)
+			// console.log([...state].map(x => x.id === action.id? !x.isDone : x.isDone))
+			console.log(state.map(todo => todo.id === action.id ? { ...todo, isDone: !todo.isDone} : todo))
+			// console.log(state.map(x=>x.isDone)) AAA
+			return state
+		
     default:
       return state;
 	}

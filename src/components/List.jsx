@@ -1,8 +1,6 @@
 import styled from "styled-components";
 import Todos from './Todos'
 import { useDispatch, useSelector } from 'react-redux';
-import dataSave from "../redux/modules/todosReducer";
-import todosReducer from "../redux/modules/todosReducer";
 
 const ListContainer = styled.div`
   width: 100%;
@@ -19,7 +17,7 @@ const ListContainer = styled.div`
 
 const TodosBox = styled.div`
   display: flex;
-  /* margin-right: 0px; */
+  flex-wrap: wrap;
 `
 
 const List = () => {
@@ -30,7 +28,6 @@ const List = () => {
   const isDoneTrue = states.filter(state => state.isDone)
 
   
-  console.log(isDoneFalse);
   return (
     <ListContainer>
       <div>
@@ -39,9 +36,8 @@ const List = () => {
         </p>
         <TodosBox>
           {isDoneFalse.map((state) => {
-            console.log(state)
             return (
-              <Todos title={state.title} body={state.body} />
+              <Todos title={state.title} body={state.body} key={state.id} id={state.id} isDone={state.isDone} />
           )
                 })}
         </TodosBox>
@@ -53,9 +49,8 @@ const List = () => {
         </p>
         <div>
           {isDoneTrue.map((state) => {
-            console.log(state)
             return (
-              <Todos title={state.title} body={state.body} />
+              <Todos title={state.title} body={state.body} key={state.id} id={state.id} isDone={state.isDone}/>
           )
                 })}
         </div>
