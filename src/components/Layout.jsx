@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import FormInput from './FormInput'
 import Header from './Header'
-import List from "./List";
 
 const LayoutBox = styled.div`
   max-width: 1200px;
@@ -16,7 +15,6 @@ const Layout = () => {
     <LayoutBox>
       <Header />
       <FormInput />
-      <List />
     </LayoutBox>
   )
 }
