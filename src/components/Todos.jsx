@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
-import { Route } from 'react-router-dom';
-import DetailPage from "./DetailPage";
+import {useNavigate} from 'react-router-dom'
 
 const TodoBox = styled.div`
   width: 300px;
@@ -20,18 +19,6 @@ const TodoBox = styled.div`
     div {
       margin-left: -20px;
       display: flex;
-      /* justify-content: space-between; */
-      
-      /* button {
-        width: 130px;
-        height: 40px;
-        border-radius: 7px;
-        background-color: white;
-        border: 3px solid ${(props) => props.bordercolor};
-        color: ${(props) => props.ABC};
-        cursor: pointer;
-        margin-right: 5px;
-      } */
     }
   }
 `
@@ -65,18 +52,20 @@ const DetailPageBtn = styled.button`
 
 const Todos = ({ title, body, id, isDone }) => {
   const dispatch = useDispatch(); // dispatch 생성
+  const navigate = useNavigate();
+
+
   const deleteTodo = () => {
     dispatch({type: 'DELETE_TODO', id})
   }
   const toggleTodo = () => {
     console.log(isDone)
     dispatch({type: 'TOGGLE_TODO', id, isDone})
-    // dispatch(toggleTodo(isDone)) AAA
+    /// dispatch(toggleTodo(id,isDone)) AAA
   }
   const DetailPage = () => {
-    console.log('디테일');
-
-    <Route path="/detail" component={DetailPage} />
+    navigate(`/DetailPage/${id}`);
+    // <Route path="/detail" component={DetailPage} />
   } 
 
   return (

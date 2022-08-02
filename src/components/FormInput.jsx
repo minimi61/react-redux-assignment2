@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import { useState } from 'react';
 import {useDispatch} from 'react-redux'
-import { initialState } from '../redux/modules/todosReducer'
 import { addTodo } from "../redux/modules/todosReducer";
 import List from "./List";
 
@@ -64,7 +63,7 @@ const FormInput = () => {
       body: body,
     }
     dispatch(addTodo(data))
-    // dispatch(dataSave([...initialState, data]))
+// dispatch에서는 합쳐주는 것을 못함
     setTitle('');
     setBody('');
   }

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import Todos from './Todos'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 const ListContainer = styled.div`
   width: 100%;
@@ -21,9 +21,9 @@ const TodosBox = styled.div`
 `
 
 const List = () => {
-  const dispatch = useDispatch(); // dispatch 생성
+  // const dispatch = useDispatch(); // dispatch 생성
   const states = useSelector((state) => state.todosReducer)
-  // console.log(states)
+
   const isDoneFalse = states.filter(state => !state.isDone)
   const isDoneTrue = states.filter(state => state.isDone)
 
@@ -48,11 +48,13 @@ const List = () => {
         Done ..! 🎉
         </p>
         <div>
+        <TodosBox>
           {isDoneTrue.map((state) => {
             return (
               <Todos title={state.title} body={state.body} key={state.id} id={state.id} isDone={state.isDone}/>
           )
-                })}
+          })}
+          </TodosBox>
         </div>
       </div>
 
