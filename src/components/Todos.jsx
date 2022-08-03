@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from 'react-redux';
 import {useNavigate} from 'react-router-dom'
+import { toggleTodo } from "../redux/modules/todosReducer";
 
 const TodoBox = styled.div`
   width: 300px;
@@ -58,10 +59,10 @@ const Todos = ({ title, body, id, isDone }) => {
   const deleteTodo = () => {
     dispatch({type: 'DELETE_TODO', id})
   }
-  const toggleTodo = () => {
+  const clickToggleTodo = () => {
     console.log(isDone)
-    dispatch({type: 'TOGGLE_TODO', id, isDone})
-    /// dispatch(toggleTodo(id,isDone)) AAA
+    // dispatch({type: 'TOGGLE_TODO', id, isDone})
+    dispatch(toggleTodo(id,isDone)) 
   }
   const DetailPage = () => {
     navigate(`/DetailPage/${id}`);
@@ -75,7 +76,7 @@ const Todos = ({ title, body, id, isDone }) => {
         <h3>{body}</h3>
         <div>
           <TodoBtnColor bordercolor="lightcoral" onClick={deleteTodo}>삭제하기</TodoBtnColor>
-          <TodoBtnColor bordercolor="lightgreen" onClick={toggleTodo}>{isDone ? '취소' :'완료'}</TodoBtnColor>
+          <TodoBtnColor bordercolor="lightgreen" onClick={clickToggleTodo}>{isDone ? '취소' :'완료'}</TodoBtnColor>
         </div>  
           <DetailPageBtn onClick={DetailPage}>자세히 보기</DetailPageBtn>
         

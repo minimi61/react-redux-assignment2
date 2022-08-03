@@ -58,11 +58,6 @@ export default function todosReducer(state = initialState, action){
 			return state
 		
 		case TOGGLE_TODO:
-			// console.log(action.id)
-			// console.log('x id', state.map(x => x.id === action.id))
-			// console.log('x isDone', state.map(x => x.isDone))
-			// state = [...state].map(todo => todo.id === action.id ? !todo.isDone : todo.isDone)
-			// console.log([...state].map(x => x.id === action.id? !x.isDone : x.isDone))
 			// console.log(state.map(todo => todo.id === action.id ? { ...todo, isDone: !todo.isDone} : todo))
 			state = [...state].map((todo) => 
 				todo.id === action.id ?
