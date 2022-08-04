@@ -56,7 +56,7 @@ const DetailPage = () => {
   }
 
   const param = useParams();
-  // console.log(param)
+  console.log(param)
 
   const states = useSelector((state) => state.todosReducer)
   const sameIdContents = [...states].find(state => {

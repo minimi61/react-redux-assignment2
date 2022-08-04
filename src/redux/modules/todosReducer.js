@@ -1,14 +1,15 @@
+import { v4 as uuidv4 } from "uuid";
 
 const ADD_TODO = 'ADD_TODO';
 const DELETE_TODO = 'DELETE_TODO';
 const TOGGLE_TODO = 'TOGGLE_TODO';
 
-let nextId = 3
+// let nextId = 3
 
 export const addTodo = (data) => (
 	{ type: ADD_TODO,
 		data: {
-		id: nextId++,
+		id:  uuidv4(),
 		title: data.title,
 		body: data.body,
 		isDone: false
@@ -50,7 +51,6 @@ export default function todosReducer(state = initialState, action){
 
 		case ADD_TODO:
 			state = [...state, action.data]
-			console.log(state)
 			return state
 		
 		case DELETE_TODO:
@@ -58,12 +58,10 @@ export default function todosReducer(state = initialState, action){
 			return state
 		
 		case TOGGLE_TODO:
-			// console.log(state.map(todo => todo.id === action.id ? { ...todo, isDone: !todo.isDone} : todo))
 			state = [...state].map((todo) => 
 				todo.id === action.id ?
 					{...todo, isDone: !todo.isDone} : todo
 			)
-			// console.log(state.map(x=>x.isDone)) AAA
 			return state
 		
     default:
