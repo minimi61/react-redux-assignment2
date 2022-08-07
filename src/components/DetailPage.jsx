@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 const DetailBox = styled.div`
   width: 50%;
-  height: 50vh;
+  height: 570px;
   margin: 0  auto;
   margin-top: 100px;
   border-radius: 10px;
@@ -59,19 +59,21 @@ const DetailPage = () => {
 
 
   const states = useSelector((state) => state.todosReducer)
+
   console.log(typeof states[0].id)
   const sameIdContents = [...states].find(state => {
-    return state.id === param.id
+    console.log(typeof state.id)
+    return String(state.id) === (param.id)
   })
   console.log(sameIdContents)
-   
+
 
   return (
     <DetailBox>
       <DetailCONTATNER>
         <h1>{sameIdContents.title}</h1>
-        <DetailContent>{sameIdContents.body }</DetailContent>
-        <BACKBTN onClick={BackToHome}><FontAwesomeIcon icon={faRotateLeft}/></BACKBTN>
+        <DetailContent>{sameIdContents.body}</DetailContent>
+        <BACKBTN onClick={BackToHome}><FontAwesomeIcon icon={faRotateLeft} /></BACKBTN>
       </DetailCONTATNER>
     </DetailBox>
   );
